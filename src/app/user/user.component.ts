@@ -11,12 +11,13 @@ import {User} from '../user'
 export class UserComponent implements OnInit {
 
   private users;
-  
-  user = {
-    nom :"",
-    email:"",
-    password:""
-  }
+  newuser : User = {
+    id : 0,
+    nom : "",
+    email :"",
+    password :""
+
+  };
   selectedUser: User;
 
   
@@ -36,12 +37,44 @@ export class UserComponent implements OnInit {
  
   addUser({valid, value}){
     if (valid && value){
-    this.dataService.addUser(this.user);
+   // this.dataService.addUser(this.newuser);
+    
+    this.dataService.addUser(this.newuser).subscribe(data => {alert("Succesfully Added User details");this.getUsers();},Error => {alert("failed while adding user details")});
     }
     else{
            
       alert("misssing or incorrect fields");
     }
+  }
+
+  putUser(){
+    
+    console.log(this.dataService.updateUser(this.selectedUser));
+
+      
+    return  this.dataService.updateUser(this.selectedUser).subscribe(      
+      data => { this.users = data },
+      err => console.error(err),
+      () => console.log('done updating User'));
+    
+  }
+
+
+  deleteUser(id: number) {
+
+    console.log(this.dataService.removeUser(this.selectedUser.id));
+
+    return  this.dataService.removeUser(this.selectedUser.id).subscribe(      
+      data => { this.users = data },
+      err => console.error(err),
+      () => console.log('done deleting User'));
+  }
+
+  deleteRefreshUser(id : number){
+    this.deleteUser(id);
+    this.show=false;
+    this.getUsers();
+
   }
  
   onSelect(user: User): void {
@@ -61,7 +94,13 @@ export class UserComponent implements OnInit {
     else
       this.buttonName = "User Details";
   }
-  
+
+
+  logTest()
+  {
+    console.log("ceci est un test "+this.selectedUser.password);
+    
+  }
 
   ngOnInit() {
 

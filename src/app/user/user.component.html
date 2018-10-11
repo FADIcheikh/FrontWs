@@ -26,18 +26,33 @@
     <div *ngIf="selectedUser">
         <h2>{{selectedUser.nom | uppercase}} Details</h2>
         <div><span>id: </span>{{selectedUser.id}}</div>
-        <div><span>email: </span>{{selectedUser.email}}</div>
+        <div>
+            <label>email:
+              <input [(ngModel)]="selectedUser.email" placeholder="email">
+            </label>
+          </div>
         <div>
           <label>name:
             <input [(ngModel)]="selectedUser.nom" placeholder="name">
           </label>
         </div>
-        <div><span>password: </span>{{selectedUser.password}}</div>
+        <div>
+            <label>password:
+              <input [(ngModel)]="selectedUser.password" placeholder="password">
+            </label>
+          </div>
+
       </div>
 </div>
 
   <button (click)="toggle()" id="bt">
       {{buttonName}}
+  </button>
+  <button (click)="putUser()" id="bt">
+      Update
+  </button>
+  <button (click)="deleteRefreshUser(selectedUser.id)" id="bt">
+      Remove
   </button>
 
 <!-- Afficher un utilisateur -->
@@ -46,10 +61,10 @@
     <div class="col-sm-6">
         <div class="text-center"><h1>ADD User</h1></div>
      
-      <form novalidate #fo='ngForm' (ngSubmit)="addUser(fo)">
+      <form>
         <div class="form-group">
           <label for="name">  Nom:</label>
-          <input type="text" [(ngModel)]='user.nom' class="form-control" id="name" name="name" #myName="ngModel" minlength="4" required>
+          <input type="text" [(ngModel)]='newuser.nom' class="form-control" id="name" name="name" #myName="ngModel" minlength="4" required>
           <div *ngIf="myName.errors?.required && myName.touched" class="alert alert-danger"  >
             First name is required
               </div>
@@ -63,7 +78,7 @@
       
         <div class="form-group">
           <label for="email">Email:</label>
-          <input type="email" [(ngModel)]='user.email' class="form-control" id="email" name="email" #myemail="ngModel" minlength="4" required >
+          <input type="email" [(ngModel)]='newuser.email' class="form-control" id="email" name="email" #myemail="ngModel" minlength="4" required >
           <div *ngIf="myemail.errors?.required && myemail.touched" class="alert alert-danger"  >
             email is required
               </div>
@@ -74,25 +89,19 @@
         
         <div class="form-group">
           <label for="text">Password:</label>
-          <input type="password" [(ngModel)]='user.password' class="form-control" id="website" name="website" #mywebsite="ngModel" minlength="4" required >
+          <input type="password" [(ngModel)]='newuser.password' class="form-control" id="website" name="website" #mywebsite="ngModel" minlength="4" required >
           <div *ngIf="mywebsite.errors?.required && mywebsite.touched" class="alert alert-danger"  >
-            website is required
+            password is required
               </div>
               <div *ngIf="mywebsite.errors?.minlength && mywebsite.touched" class="alert alert-danger"  >
             min required 4 caracters
               </div>
         </div>
-        
   
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+        <button type="button" class="btn btn-default" (click)="addUser()">Add User</button>
+            </form>
       </div>
    
-   
-   
-    <div class="col-sm-6">
-  
-    </div>
   
   
   
