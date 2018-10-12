@@ -5,10 +5,10 @@ import{User} from './user'
 
 
 
-let headers = new HttpHeaders().set("Access-Control-Allow-Origin", "*");
+let headers = new HttpHeaders().set('Access-Control-Allow-Origin', '*');
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json','Access-Control-Allow-Origin': '*' })
 };
 
 
@@ -28,23 +28,22 @@ export class DataServiceService {
 
   getUsers() : Observable<User[]>{
 
-    return this.http.get<User[]>(this.dataUrl+'/getjson');
+    return this.http.get<User[]>(this.dataUrl+'/getjson',httpOptions);
   }
 
-  /**getUsers(){
-    //return this.http.get<User[]>(this.dataUrl+'/getjson');
-    return this.http.get(this.dataUrl + '/getjson');
-  }**/
-  /**addUser(user : User): Observable<string>{
+  
+ public addUser(nom: string ,email: string,password:string): Observable<string>  {
 
-    return this.http.post(this.dataUrl+'/postjson',user,{headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' });
-
-  }**/
-  addUser (user: User): Observable<User> {
-    let body = JSON.stringify(user);
-    alert(body);
-    return this.http.put<User>(this.dataUrl+'/postjson', body, httpOptions);
-  }
+  const response = this.http.post(
+    this.dataUrl + '/postjson',
+    {
+      "nom": nom,
+      "email" : email,
+      "password": password
+    },{headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }
+  );
+  return response;
+}
   updateUser (user: User): Observable<User> {
     return this.http.put<User>(this.dataUrl+'/updatejson/'+user.id, user, httpOptions);
   }

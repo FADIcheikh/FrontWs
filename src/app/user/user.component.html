@@ -1,12 +1,11 @@
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 <!-- Afficher tous les utilisateurs -->
 <div class="text-center"><h1>List Of Users</h1></div>
 
-<table  class= "table-bordered" style="width:100%">
+
+<table  class="table table-hover" style="width:100%">
     <tr>
         <th>Firstname</th>
         <th>Email</th>
@@ -45,66 +44,15 @@
       </div>
 </div>
 
-  <button (click)="toggle()" id="bt">
+  <button (click)="toggle()" class="btn btn-info">
       {{buttonName}}
   </button>
-  <button (click)="putUser()" id="bt">
+  <button (click)="putUser()" class="btn btn-success">
       Update
   </button>
-  <button (click)="deleteRefreshUser(selectedUser.id)" id="bt">
+  <button (click)="deleteRefreshUser(selectedUser.id)" class="btn btn-danger">
       Remove
   </button>
 
-<!-- Afficher un utilisateur -->
 
-<div class="row">
-    <div class="col-sm-6">
-        <div class="text-center"><h1>ADD User</h1></div>
-     
-      <form>
-        <div class="form-group">
-          <label for="name">  Nom:</label>
-          <input type="text" [(ngModel)]='newuser.nom' class="form-control" id="name" name="name" #myName="ngModel" minlength="4" required>
-          <div *ngIf="myName.errors?.required && myName.touched" class="alert alert-danger"  >
-            First name is required
-              </div>
-              <div *ngIf="myName.errors?.minlength && myName.touched" class="alert alert-danger"  >
-                min required 4 caracters
-                  </div>
-        
-            </div>
-       
-      
-      
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" [(ngModel)]='newuser.email' class="form-control" id="email" name="email" #myemail="ngModel" minlength="4" required >
-          <div *ngIf="myemail.errors?.required && myemail.touched" class="alert alert-danger"  >
-            email is required
-              </div>
-              <div *ngIf="myemail.errors?.minlength && myemail.touched" class="alert alert-danger"  >
-            min required 4 caracters
-              </div>
-        </div>
-        
-        <div class="form-group">
-          <label for="text">Password:</label>
-          <input type="password" [(ngModel)]='newuser.password' class="form-control" id="website" name="website" #mywebsite="ngModel" minlength="4" required >
-          <div *ngIf="mywebsite.errors?.required && mywebsite.touched" class="alert alert-danger"  >
-            password is required
-              </div>
-              <div *ngIf="mywebsite.errors?.minlength && mywebsite.touched" class="alert alert-danger"  >
-            min required 4 caracters
-              </div>
-        </div>
-  
-        <button type="button" class="btn btn-default" (click)="addUser()">Add User</button>
-            </form>
-      </div>
-   
-  
-  
-  
-  
-  </div>
   

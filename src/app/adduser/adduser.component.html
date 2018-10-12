@@ -1,0 +1,54 @@
+<!-- Ajouter un utilisateur -->
+
+<script>
+
+  </script>
+
+
+<div class="row" class="panel-body">
+  <div class="col-sm-6">
+      <div class="text-center"><h1>ADD User</h1></div>
+   
+    <form #myForm>
+      <div class="form-group">
+        <label for="name">  Nom:</label>
+        <input type="text" [(ngModel)]='nom' class="form-control" id="name" name="name" #myName="ngModel" minlength="4" required [value]="inputValue">
+        <div *ngIf="myName.errors?.required && myName.touched" class="alert alert-danger"  >
+          First name is required
+            </div>
+            <div *ngIf="myName.errors?.minlength && myName.touched" class="alert alert-danger"  >
+              min required 4 caracters
+                </div>
+      
+          </div>
+     
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" [(ngModel)]='email' class="form-control" id="email" name="email" #myemail="ngModel" minlength="4" required [value]="inputValue">
+        <div *ngIf="myemail.errors?.required && myemail.touched" class="alert alert-danger"  >
+          email is required
+            </div>
+            <div *ngIf="myemail.errors?.minlength && myemail.touched" class="alert alert-danger"  >
+          min required 4 caracters
+            </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="text">Password:</label>
+        <input type="password" [(ngModel)]='password' class="form-control" id="website" name="website" #mywebsite="ngModel" minlength="4" required [value]="inputValue">
+        <div *ngIf="mywebsite.errors?.required && mywebsite.touched" class="alert alert-danger"  >
+          password is required
+            </div>
+            <div *ngIf="mywebsite.errors?.minlength && mywebsite.touched" class="alert alert-danger"  >
+          min required 4 caracters
+            </div>
+      </div>
+
+      <button type="button" class="btn btn-success" (click)="addUser(nom,email,password)">Add User</button>
+      <button type="button" class="btn btn-danger" (mousedown)="Cancel()">Cancel</button>
+          </form>
+    </div>
+
+ 
+
+</div>

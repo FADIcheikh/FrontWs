@@ -11,13 +11,7 @@ import {User} from '../user'
 export class UserComponent implements OnInit {
 
   private users;
-  newuser : User = {
-    id : 0,
-    nom : "",
-    email :"",
-    password :""
-
-  };
+  
   selectedUser: User;
 
   
@@ -34,7 +28,7 @@ export class UserComponent implements OnInit {
       () => console.log('done loading User'));
     
   }
- 
+ /*
   addUser({valid, value}){
     if (valid && value){
    // this.dataService.addUser(this.newuser);
@@ -46,7 +40,7 @@ export class UserComponent implements OnInit {
       alert("misssing or incorrect fields");
     }
   }
-
+*/
   putUser(){
     
     console.log(this.dataService.updateUser(this.selectedUser));
